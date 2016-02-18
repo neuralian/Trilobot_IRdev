@@ -156,7 +156,7 @@ int Trilobot::getSparkfunRemoteButtonPress(){
 
 int Trilobot::getIRmessage(){
 	
-	return(IRreceiver.getIRmessage(&IRdat));
+	return(IRreceiver.getIRmessage(&IRmsg));
 }
 
 // LED switch

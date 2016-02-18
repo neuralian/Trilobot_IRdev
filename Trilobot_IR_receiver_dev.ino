@@ -43,9 +43,10 @@ void loop()
 {
 	if (bot.getIRmessage()) {
 		Serial.println(" ");
-		Serial.print("Team: "); Serial.print(bot.IRdat.team);Serial.print(", ");
-		Serial.print("Player: "); Serial.print(bot.IRdat.player);Serial.print(", ");
-		Serial.print("Message: ");Serial.println(bot.IRdat.message);
+		Serial.print("Command: "); Serial.print(bot.IRmsg.command);Serial.print(", ");
+		Serial.print("Team: "); Serial.print(bot.IRmsg.team);Serial.print(", ");
+		Serial.print("Player: "); Serial.print(bot.IRmsg.player);Serial.print(", ");
+		Serial.print("Message: ");Serial.println(bot.IRmsg.message);
 	}
 	//else Serial.println(++i);
 	

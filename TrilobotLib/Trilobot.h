@@ -299,7 +299,7 @@ const int LEDpin[] = {
 	 
 	IRrecv IRreceiver; // receiver for IR remote (using NEC codes, e.g. Sparkfun remote COM-11759).
 	int IRmode;
-	IRdataclass IRdat;
+	IRdataclass IRmsg;
 
     static int left_motorspeed;
     static int right_motorspeed;

@@ -182,8 +182,8 @@ void IRrecv::resume() {
 }
 
 // decode message from Trilobot IR controller
-// nb IRdata is a member of IRTrilobot,  IRDat is a member of Trilobot
-int IRrecv::getIRmessage(IRdataclass *IRdat){
+// nb IRdata is a member of IRTrilobot,  IRmsg is a member of Trilobot
+int IRrecv::getIRmessage(IRdataclass *IRmsg){
 	
 	uint32_t value = (uint32_t)0;
 	int OK = 0;
@@ -194,9 +194,10 @@ int IRrecv::getIRmessage(IRdataclass *IRdat){
 	
 	if (decode(&IRdata)) {
 	  value = IRdata.value;
-	  IRdat->team     = (int)(value>>24);                // team number in top byte
-	  IRdat->player   = (int)((value>>16) & 0x00FF);     // player number in 3rd byte
-	  IRdat->message  = (int) (value & 0x0000FFFF);      // message in 2 lower bytes
+	  IRmsg->command  = (uint16_t)(value>>24);              // top byte
+	  IRmsg->team     = (uint16_t)((value>>20) & 0x000F);   // upper nibble of next-to-top byte
+	  IRmsg->player   = (uint16_t)((value>>16) & 0x000F);   // lower nibble of next-to-top byte
+	  IRmsg->message  = (uint16_t) (value & 0x0000FFFF);    // message in 2 lower bytes
 	  OK = 1;
 	}
 	resume();  // restart IR receiver

@@ -71,9 +71,11 @@ class IRdataclass {
 public:
   int code_type; // NEC is codetype 1
   unsigned long value; // 32-bit message
-  int team;      
-  int player;
-  int message;
+  
+  uint16_t command;  // top byte (4) of value
+  uint16_t team;     // upper nibble of byte 3
+  uint16_t player;   // lower nibble of byte 3
+  uint16_t message;  // lower 2 bytes (0,1) of value
   int bits; // Number of bits in decoded value
   volatile unsigned int *rawbuf; // Raw intervals in .5 us ticks
   int rawlen; // Number of records in rawbuf.
